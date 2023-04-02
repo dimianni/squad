@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
-import { getPlayers, getRecepies } from '@/api/hello';
+// import { getPlayers } from './api/hello';
+// import axios from 'axios';
 
 export default function Home() {
 
   const [players, setPlayers] = useState(null)
 
-  const fetchData = async () => {
-    let data = await getPlayers()
-    console.log(data);
-    setPlayers(data.players)
-  };
-
   useEffect(() => {
-    fetchData()
+    const fetchHello = async () => {
+      let response = await fetch('/api/hello')
+      let data = await response.json()
+      setPlayers(data.data.players)
+    }
+
+    fetchHello()
   }, []);
 
   return (
