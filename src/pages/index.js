@@ -10,7 +10,7 @@ export default function Home() {
     const fetchHello = async () => {
       let response = await fetch('/api/hello')
       let data = await response.json()
-      setPlayers(data.data.players)
+      setPlayers(data.data.players);
     }
 
     fetchHello()
