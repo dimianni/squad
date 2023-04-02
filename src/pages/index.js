@@ -3,11 +3,12 @@ import { getPlayers, getRecepies } from '@/api/hello';
 
 export default function Home() {
 
-  const [recepies, setRecepies] = useState(null)
+  const [players, setPlayers] = useState(null)
 
   const fetchData = async () => {
-    let data = await getRecepies()
-    setRecepies(data.recipes)
+    let data = await getPlayers()
+    console.log(data);
+    setPlayers(data.players)
   };
 
   useEffect(() => {
@@ -21,9 +22,9 @@ export default function Home() {
         <div>
           <ul>
             {
-              recepies?.map((recepy, i) => {
+              players?.map((player, i) => {
                 return (
-                  <li key={i}>{recepy.title}</li>
+                  <li key={i}>{player.playerName}</li>
                 )
               })
             }
