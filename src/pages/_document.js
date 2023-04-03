@@ -1,3 +1,4 @@
+import Header from '@/components/Header/Header'
 import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
@@ -5,7 +6,10 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body>
-        <Main />
+        <Header />
+        <div className="container">
+          <Main />
+        </div>
         <NextScript />
       </body>
     </Html>
