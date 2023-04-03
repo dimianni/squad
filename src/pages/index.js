@@ -1,8 +1,11 @@
 import axios from "axios";
 import ClubBox from "@/components/ClubBox/ClubBox";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Home({ clubs }) {
-  console.log(clubs);
+
+  const [searchTerm, setSearchTerm] = useState('')
 
   return (
     <main>
@@ -10,15 +13,24 @@ export default function Home({ clubs }) {
         <h1 className='text-3xl text-center'>Choose your favorite team!</h1>
 
         {/* Search */}
+        <div className="my-6">
+          <input className="bg-grey" type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+          <button>
+            <Link href={`/search?term=${searchTerm}`}>Search</Link>
+          </button>
+        </div>
 
         <ul className="flex flex-wrap justify-between items-center">
           {clubs.map(club => <ClubBox key={club.id} id={club.id} clubName={club.clubName} clubImage={club.clubImage} countryName={club.countryName} />)}
         </ul>
+
       </section>
     </main>
   )
 }
 
+// getStaticProps runs at build time 
+// so there is no need for the loading screen since the data will always be available (statically generated).
 export async function getStaticProps() {
   // Top clubs
   const options = {

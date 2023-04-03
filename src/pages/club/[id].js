@@ -22,7 +22,7 @@ export async function getServerSideProps({ params: { id } }) {
     const clubOptions = {
         method: 'GET',
         url: 'https://transfermarket.p.rapidapi.com/clubs/get-header-info',
-        params: { id: `${id}`, domain: 'com' },
+        params: { id: id, domain: 'com' },
         headers: {
             'X-RapidAPI-Key': '78b5c3074dmsh67b83898e5b52e7p1d8743jsncb3d889c5e8e',
             'X-RapidAPI-Host': 'transfermarket.p.rapidapi.com'
@@ -32,7 +32,7 @@ export async function getServerSideProps({ params: { id } }) {
     const squadOptions = {
         method: 'GET',
         url: 'https://transfermarket.p.rapidapi.com/clubs/get-squad',
-        params: { id: `${id}`, saison_id: '2022', domain: 'com' },
+        params: { id: id, saison_id: '2022', domain: 'com' },
         headers: {
             'X-RapidAPI-Key': '78b5c3074dmsh67b83898e5b52e7p1d8743jsncb3d889c5e8e',
             'X-RapidAPI-Host': 'transfermarket.p.rapidapi.com'
