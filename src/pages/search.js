@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function Search({ resultClubs }) {
     return (
-        <main>
+        <main className="mt-16">
             <section>
                 <ul className="flex flex-wrap justify-between items-center">
                     {resultClubs.map(club => <ClubBox key={club.id} id={club.id} clubName={club.name} clubImage={club.logoImage} />)}

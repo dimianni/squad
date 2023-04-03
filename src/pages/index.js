@@ -1,29 +1,17 @@
 import axios from "axios";
 import ClubBox from "@/components/ClubBox/ClubBox";
-import Link from "next/link";
-import { useState } from "react";
+import Search from "@/components/Search/Search";
 
 export default function Home({ clubs }) {
 
-  const [searchTerm, setSearchTerm] = useState('')
-
   return (
-    <main>
+    <main className="mt-16">
       <section>
-        <h1 className='text-3xl text-center'>Choose your favorite team!</h1>
-
-        {/* Search */}
-        <div className="my-6">
-          <input className="bg-grey" type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-          <button>
-            <Link href={`/search?term=${searchTerm}`}>Search</Link>
-          </button>
-        </div>
-
+        <h1 className='text-3xl text-center'>Choose your favorite club!</h1>
+        <Search />
         <ul className="flex flex-wrap justify-between items-center">
           {clubs.map(club => <ClubBox key={club.id} id={club.id} clubName={club.clubName} clubImage={club.clubImage} countryName={club.countryName} />)}
         </ul>
-
       </section>
     </main>
   )

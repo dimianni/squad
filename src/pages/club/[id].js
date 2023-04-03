@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function ClubDetails({ squad, clubDetails: { name, image  } }) {
     return (
-        <main>
+        <main className="mt-16">
             <section className="flex flex-col justify-center items-center">
                 <Image src={image} alt={name} width="30" height="30" />
                 <h1>{name}</h1>
