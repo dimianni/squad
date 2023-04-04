@@ -2,7 +2,14 @@ import ClubBox from "@/components/ClubBox/ClubBox";
 import axios from "axios";
 
 
-export default function Search({ resultClubs }) {
+export default function Search({ resultClubs, error }) {
+
+    console.log(resultClubs);
+
+    if (error) {
+        return <div>Error {error}</div>
+    }
+
     return (
         <main className="mt-16">
             <section>
@@ -26,11 +33,23 @@ export async function getServerSideProps({ query }) {
         }
     };
 
-    const { data } = await axios.request(options)
+    try {
+        const { data } = await axios.request(options)
+        console.log(data);
+        return {
+            props: {
+                resultClubs: data.clubs
+            }
+        }
 
-    return {
-        props: {
-            resultClubs: data.clubs
+    } catch (error) {
+        return {
+            props: {
+                error: error
+            }
         }
     }
+
+
+
 }

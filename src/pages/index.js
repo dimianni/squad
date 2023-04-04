@@ -1,11 +1,18 @@
 import axios from "axios";
 import ClubBox from "@/components/ClubBox/ClubBox";
 import Search from "@/components/Search/Search";
+import Head from "next/head";
 
 export default function Home({ clubs }) {
 
   return (
     <main className="mt-16">
+      <Head>
+        <title>TheDreamTeam</title>
+        <meta name="description" content="At TheDreamTeam you can see the most up to date squad of your favorite football team!" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <section>
         <h1 className='text-3xl text-center'>Choose your favorite club!</h1>
         <Search />
@@ -31,12 +38,16 @@ export async function getStaticProps() {
     }
   };
 
-  let { data } = await axios.request(options)
-  // let data = await response.data
-
-  return {
-    props: {
-      clubs: data.teams
+  try {
+    let { data } = await axios.request(options)
+    return {
+      props: {
+        clubs: data.teams
+      }
     }
+  } catch (error) {
+    console.log(error);
   }
+
+
 }
