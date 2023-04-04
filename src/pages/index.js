@@ -3,7 +3,11 @@ import ClubBox from "@/components/ClubBox/ClubBox";
 import Search from "@/components/Search/Search";
 import Head from "next/head";
 
-export default function Home({ clubs }) {
+export default function Home({ clubs, error }) {
+
+  if (error) {
+    return <div>An error occurred: {error}</div>
+  }
 
   return (
     <main className="mt-16">
@@ -46,7 +50,11 @@ export async function getStaticProps() {
       }
     }
   } catch (error) {
-    console.log(error);
+    return {
+      props: {
+        error: error
+      }
+    }
   }
 
 

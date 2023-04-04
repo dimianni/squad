@@ -26,7 +26,6 @@ export default function Search() {
     
 
     useEffect(() => {
-        console.log(searchTerm.length, touched);
         if (searchTerm.length < 2 && touched){
             setError(true)
         } else {
