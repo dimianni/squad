@@ -16,7 +16,7 @@ export default function ClubDetails({ squad, clubDetails: { name, image }, error
                 <h1>{name}</h1>
             </section>
             <section className="mt-6">
-                <ul className="flex flex-wrap justify-between">{squad.map(player => <PlayerBox id={player.id} name={player.name} image={player.image} shirtNumber={player.shirtNumber} captain={player.captain} />)}</ul>
+                <ul className="flex flex-wrap justify-between">{squad.map(player => <PlayerBox key={player.id} id={player.id} name={player.name} image={player.image} shirtNumber={player.shirtNumber} captain={player.captain} />)}</ul>
             </section>
         </main>
     )

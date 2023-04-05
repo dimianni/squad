@@ -1,13 +1,15 @@
 import axios from "axios";
 import ClubBox from "@/components/ClubBox/ClubBox";
-import Search from "@/components/Search/Search";
+import SearchField from "@/components/SearchField/SearchField";
 import Head from "next/head";
+
 
 export default function Home({ clubs, error }) {
 
   if (error) {
     return <div>An error occurred: {error}</div>
   }
+
 
   return (
     <main className="mt-16">
@@ -19,7 +21,7 @@ export default function Home({ clubs, error }) {
       </Head>
       <section>
         <h1 className='text-3xl text-center'>Choose your favorite club!</h1>
-        <Search />
+        <SearchField />
         <ul className="flex flex-wrap justify-between items-center">
           {clubs.map(club => <ClubBox key={club.id} id={club.id} clubName={club.clubName} clubImage={club.clubImage} countryName={club.countryName} />)}
         </ul>
@@ -56,6 +58,4 @@ export async function getStaticProps() {
       }
     }
   }
-
-
 }

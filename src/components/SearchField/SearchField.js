@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function Search() {
+export default function SearchField() {
 
     const router = useRouter()
     const [searchTerm, setSearchTerm] = useState('')
@@ -46,7 +46,7 @@ export default function Search() {
                 onBlur={handleBlur}
             />
             <button className="ml-2">
-                <Link onClick={handleClick} href={`/search?term=${searchTerm}`}>Search</Link>
+                <Link onClick={handleClick} href={`/search?term=${searchTerm}&page=1`}>Search</Link>
             </button>
         </div>
     )
