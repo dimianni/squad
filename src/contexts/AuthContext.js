@@ -27,8 +27,8 @@ export const AuthProvider = ({ children }) => {
         myAuth.signOut() 
     }
 
-
     useEffect(() => {
+        console.log('user changed');
         // 'onAuthStateChanged' will be called after 'createUserWithEmailAndPassword'
         // we do not want this to run on every render
         const unsubscribe = onAuthStateChanged(auth, user => {

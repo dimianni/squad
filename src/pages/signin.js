@@ -28,6 +28,7 @@ export default function Signin() {
                 setError('')
                 setLoading(true)
                 await signin(user, pwd)
+                console.log(currentUser);
                 router.push(`/profile/${currentUser.uid}`)
             } catch (error) {
                 setError('Failed to log in')

@@ -20,7 +20,7 @@ export default function Search({ resultClubs, error }) {
             <section>
                 <SearchField />
                 <h2>Results for "{router.query.term}"</h2>
-                <ul className="flex flex-wrap justify-between items-center">
+                <ul className="flex flex-wrap justify-start items-center">
                     {
                         resultClubs.clubs ?
                             resultClubs.clubs.map(club => <ClubBox key={club.id} id={club.id} clubName={club.name} clubImage={club.logoImage} />)

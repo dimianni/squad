@@ -10,7 +10,8 @@ export default function Header() {
     const { currentUser, signout } = useAuth();
     const router = useRouter()
 
-    async function handleLogout(){
+    async function handleLogout(e){
+        e.preventDefault()
         try {
             await signout()
             router.push('/')
