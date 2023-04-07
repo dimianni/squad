@@ -6,7 +6,7 @@ export default function Pagination({ numOfPages, routeTerm, currentPage }) {
     const currentPageIndex = currentPage - 1; // subtract 1 to get zero-based index
     const startIndex = Math.max(currentPageIndex - range, 0); // start at 0 if we're near the beginning
     const endIndex = Math.min(currentPageIndex + range, numOfPages - 1); // end at totalPages-1 if we're near the end
-    const pages = Array.from({ length: endIndex - startIndex + 1 }, (_, i) => startIndex + i + 1);
+    const pages = Array.from({ length: endIndex - startIndex + 1 }, (_, i) => i + startIndex + 1);
     // const oldPages = Array.from({length: numOfPages}, (_,i) => i+1)
 
     if (startIndex > 0) {
