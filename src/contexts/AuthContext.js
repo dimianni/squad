@@ -18,10 +18,10 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
 
     function signup(user, pwd) {
-        return myAuth.createUserWithEmailAndPassword(user, pwd)
+        return myAuth.createUserWithEmailAndPassword(user, pwd) // should be a promise
     }
     function signin(user, pwd){
-       return myAuth.signInWithEmailAndPassword(user, pwd) 
+       return myAuth.signInWithEmailAndPassword(user, pwd) // should be a promise
     }
     function signout(){
         myAuth.signOut() 
