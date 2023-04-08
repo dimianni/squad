@@ -2,6 +2,7 @@ import { useRouter } from "next/router"
 import { useState } from "react"
 import { useAuth } from "@/contexts/AuthContext"
 import Link from "next/link"
+import Button from "@/UI/Button"
 
 export default function Signin() {
 
@@ -13,6 +14,7 @@ export default function Signin() {
 
     const { signin, currentUser } = useAuth()
 
+
     const handleUserInput = (e) => {
         setUser(e.target.value)
     }
@@ -23,13 +25,16 @@ export default function Signin() {
         e.preventDefault()
 
         if (user !== '' && pwd !== ''){
-            console.log(user, pwd);
             try {
                 setError('')
                 setLoading(true)
-                await signin(user, pwd)
-                console.log(currentUser);
-                router.push(`/profile/${currentUser.uid}`)
+                console.log(typeof (signin(user, pwd))); //object
+
+                let theUser = await signin(user, pwd)
+                console.log(theUser);
+                setError('User success log in')
+
+                router.push(`/profile/${theUser.user.uid}`)
             } catch (error) {
                 setError('Failed to log in')
                 console.log(error);
@@ -39,19 +44,21 @@ export default function Signin() {
     }
 
     return (
-        <main className="mt-16 flex flex-col justify-center items-center">
-            <h1>Sign In</h1>
-            <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center">
-                <input onChange={handleUserInput} value={user} placeholder="Your username" className="bg-wite border border-grey p-2 pl-4 rounded-xl text-base" type="text" />
-                <input onChange={handlePwdInput} value={pwd} placeholder="Your password" className="bg-wite border border-grey p-2 pl-4 rounded-xl text-base" type="text" />
-                <button disabled={loading} type="submit">Sign in</button>
-            </form>
-            <div>
-                <p>Need an account?</p>
-                <Link href="/signup">Sign Up</Link>
-            </div>
+        <main className="mt-16">
+            <div className="wrapper w-96 mx-auto flex flex-col justify-center items-center">
+                <h1 className="text-3xl font-semibold mb-6">Sign In</h1>
+                <form onSubmit={handleSubmit} className="w-full flex flex-col justify-center items-center">
+                    <input onChange={handleUserInput} value={user} placeholder="Your username" className="w-full bg-wite border mb-4 border-grey p-2 pl-4 rounded-xl text-base" type="text" />
+                    <input onChange={handlePwdInput} value={pwd} placeholder="Your password" className="w-full bg-wite border mb-4 border-grey p-2 pl-4 rounded-xl text-base" type="text" />
+                    <Button btnType="submit" btnText="Sign In" disabled={loading} />
+                </form>
+                <div className="mt-4 text-sm flex">
+                    <p className="mr-1">Need an account?</p>
+                    <Link className="underline" href="/signup">Sign Up</Link>
+                </div>
 
-            {error && <div>{error}</div>}
+                {error && <div>{error}</div>}
+            </div>
         </main>
     )
 }

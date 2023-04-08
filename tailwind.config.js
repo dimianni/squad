@@ -11,7 +11,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "grey": "#e3e3e3"
+        grey: "#e3e3e3",
+        blue: {
+          500: "#2081e2",
+          900: "#1650e1"
+        }
       }
     },
     container: {
