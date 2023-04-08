@@ -23,7 +23,13 @@ export default function Search({ resultClubs, error }) {
                 <ul className="flex flex-wrap justify-start items-center">
                     {
                         resultClubs.clubs ?
-                            resultClubs.clubs.map(club => <ClubBox key={club.id} id={club.id} clubName={club.name} clubImage={club.logoImage} />)
+                            resultClubs.clubs.map(club => {
+                                return (
+                                    <li onClick={() => router.push(`/club/${club.id}`)} className="single-club shadow bg-white mb-4 cursor-pointer rounded-xl sm:hover:scale-105 transition">
+                                        <ClubBox key={club.id} clubName={club.name} clubImage={club.logoImage} />
+                                    </li>
+                                )
+                            })
                             : (
                                 <div>
                                     <p>No matches for "{router.query.term}" :(</p>

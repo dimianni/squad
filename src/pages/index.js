@@ -2,6 +2,7 @@ import axios from "axios";
 import ClubBox from "@/components/ClubBox/ClubBox";
 import SearchField from "@/components/SearchField/SearchField";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 
 export default function Home({ clubs, error }) {
@@ -10,6 +11,7 @@ export default function Home({ clubs, error }) {
     return <div>An error occurred: {error}</div>
   }
 
+  const router = useRouter()
 
   return (
     <main className="mt-16">
@@ -23,7 +25,18 @@ export default function Home({ clubs, error }) {
         <h1 className='text-3xl text-center'>Choose your favorite club!</h1>
         <SearchField />
         <ul className="flex flex-wrap justify-between items-center">
-          {clubs.map(club => <ClubBox key={club.id} id={club.id} clubName={club.clubName} clubImage={club.clubImage} countryName={club.countryName} />)}
+          {clubs.map(club => {
+            return (
+              <li onClick={() => router.push(`/club/${club.id}`)} className="single-club shadow bg-white mb-4 cursor-pointer rounded-xl sm:hover:scale-105 transition">
+                <ClubBox
+                  key={club.id}
+                  clubName={club.clubName}
+                  clubImage={club.clubImage}
+                  countryName={club.countryName}
+                />
+              </li>
+            )
+          })}
         </ul>
       </section>
     </main>
