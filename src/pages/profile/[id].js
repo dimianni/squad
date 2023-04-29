@@ -8,7 +8,7 @@ export default function Profile(){
     return (
         <main className="mt-16">
             <h1>User profile</h1>
-            <p>{currentUser.email}</p>
+            <p>{currentUser?.email}</p>
         </main>
     )
 }

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { SquareLoader } from "react-spinners";
 import { PlayerCard } from "@/components";
+import { Spinner } from "@/UI";
 
 
 export default function ClubDetails() {
@@ -38,11 +38,7 @@ export default function ClubDetails() {
 
     if (!clubData || !squadData) {
         return (
-            <main className="min-h-screen">
-                <div className="min-h-screen flex justify-center items-center">
-                    <SquareLoader color="#2081e2" />
-                </div>
-            </main>
+            <Spinner />
         )
     }
 

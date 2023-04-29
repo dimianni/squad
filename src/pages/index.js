@@ -1,8 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { SquareLoader } from "react-spinners";
 import { SearchField, ClubCard } from "@/components";
+import { Spinner } from "@/UI";
 
 export default function Home() {
 
@@ -20,11 +20,7 @@ export default function Home() {
   
   if (!topClubs){
     return (
-      <main className="min-h-screen">
-        <div className="min-h-screen flex justify-center items-center">
-          <SquareLoader color="#2081e2" />
-        </div>
-      </main>
+      <Spinner />
     )
   }
 

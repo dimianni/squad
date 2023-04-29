@@ -35,7 +35,7 @@ export default function Header() {
                             <button className="ml-4" onClick={handleLogout}>Sign Out</button>
                         </div>
                     ) : (
-                        <Link href="/signin">Sign In</Link>
+                        <Link href="/login">Sign In</Link>
                     )
                 }
             </div>
