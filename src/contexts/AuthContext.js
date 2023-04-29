@@ -28,25 +28,9 @@ export const AuthProvider = ({ children }) => {
     }
 
     onAuthStateChanged(auth, user => {
-        console.log('user changed');
-
         setLoading(false)
         setCurrentUser(user)
     })
-
-    // useEffect(() => {
-    //     console.log('user changed');
-    //     // 'onAuthStateChanged' will be called after 'createUserWithEmailAndPassword'
-    //     // we do not want this to run on every render
-    //     const unsubscribe = onAuthStateChanged(auth, user => {
-    //         setLoading(false)
-    //         setCurrentUser(user)
-    //     })
-
-    //     // will unsubscribe when we unmount this component
-    //     return unsubscribe
-    // }, [])
-
 
     const value = {
         currentUser,

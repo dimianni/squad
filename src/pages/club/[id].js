@@ -1,32 +1,69 @@
-import PlayerBox from "@/components/PlayerBox/PlayerBox";
-import axios from "axios"
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { SquareLoader } from "react-spinners";
+import { PlayerCard } from "@/components";
 
 
-export default function ClubDetails({ squad, clubDetails: { name, image }, error }) {
+export default function ClubDetails() {
 
-    if (error) {
-        return <div>An error occurred: {error}</div>
+    const router = useRouter()
+    let { id } = router.query;
+
+    const [clubData, setClubData] = useState(null)
+    const [squadData, setSquadData] = useState(null)
+
+    const getClubDetails = async (id) => {
+
+        // id is still 'undefined' on page load
+        if (!id) {
+            return;
+        }
+
+        let response = await fetch('/api/getclubdetails', {
+            method: "POST",
+            body: JSON.stringify({ id }),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        let data = await response.json()
+        setClubData(data.clubData)
+        setSquadData(data.squadData)
+    }
+
+    useEffect(() => {
+        getClubDetails(id)
+    }, [id])
+
+    if (!clubData || !squadData) {
+        return (
+            <main className="min-h-screen">
+                <div className="min-h-screen flex justify-center items-center">
+                    <SquareLoader color="#2081e2" />
+                </div>
+            </main>
+        )
     }
 
     return (
         <main className="mt-16">
             <section className="flex flex-col justify-center items-center">
-                <Image src={image} alt={name} width="30" height="30" />
-                <h1>{name}</h1>
+                <Image src={clubData.club.image} alt={clubData.club.name} width="30" height="30" />
+                <h1>{clubData.club.name}</h1>
             </section>
             <section className="mt-6">
                 <ul className="flex flex-wrap justify-start items-center">
-                    {squad.map(player => {
+                    {squadData.squad.map(player => {
                         return (
                             <li key={player.id} className="single-player shadow bg-white rounded-xl mb-4">
-                                <PlayerBox 
-                                    key={player.id} 
-                                    id={player.id} 
-                                    name={player.name} 
-                                    image={player.image} 
-                                    shirtNumber={player.shirtNumber} 
-                                    captain={player.captain} 
+                                <PlayerCard
+                                    key={player.id}
+                                    id={player.id}
+                                    name={player.name}
+                                    image={player.image}
+                                    shirtNumber={player.shirtNumber}
+                                    captain={player.captain}
                                 />
                             </li>
                         )
@@ -35,50 +72,4 @@ export default function ClubDetails({ squad, clubDetails: { name, image }, error
             </section>
         </main>
     )
-}
-
-export async function getServerSideProps({ params: { id } }) {
-
-    const clubOptions = {
-        method: 'GET',
-        url: 'https://transfermarket.p.rapidapi.com/clubs/get-header-info',
-        params: { id: id, domain: 'com' },
-        headers: {
-            'X-RapidAPI-Key': process.env.TN_API_KEY,
-            'X-RapidAPI-Host': 'transfermarket.p.rapidapi.com'
-        }
-    };
-
-    const squadOptions = {
-        method: 'GET',
-        url: 'https://transfermarket.p.rapidapi.com/clubs/get-squad',
-        params: { id: id, saison_id: '2022', domain: 'com' },
-        headers: {
-            'X-RapidAPI-Key': process.env.TN_API_KEY,
-            'X-RapidAPI-Host': 'transfermarket.p.rapidapi.com'
-        }
-    };
-
-    try {
-        const clubResponse = await axios.request(clubOptions)
-        const clubData = await clubResponse.data
-
-        const squadResponse = await axios.request(squadOptions)
-        const squadData = await squadResponse.data
-
-        return {
-            props: {
-                clubDetails: clubData.club,
-                squad: squadData.squad
-            }
-        }
-    } catch (error) {
-        return {
-            props: {
-                error: error
-            }
-        }
-    }
-
-
 }

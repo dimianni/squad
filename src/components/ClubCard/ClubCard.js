@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-export default function ClubBox({ clubName, clubImage, countryName }) {
+export default function ClubCard({ clubName, clubImage, countryName }) {
 
     return (
         <article className="flex flex-col items-center justify-center p-4 h-40 text-center">

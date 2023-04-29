@@ -1,8 +1,8 @@
-import ClubBox from "@/components/ClubBox/ClubBox";
 import axios from "axios";
 import { useRouter } from "next/router";
 import SearchField from "@/components/SearchField/SearchField";
 import Pagination from "@/Utils/Pagination";
+import ClubCard from "@/components/ClubCard/ClubCard";
 
 export default function Search({ resultClubs, error }) {
 
@@ -26,7 +26,7 @@ export default function Search({ resultClubs, error }) {
                             resultClubs.clubs.map(club => {
                                 return (
                                     <li onClick={() => router.push(`/club/${club.id}`)} className="single-club shadow bg-white mb-4 cursor-pointer rounded-xl sm:hover:scale-105 transition">
-                                        <ClubBox key={club.id} clubName={club.name} clubImage={club.logoImage} />
+                                        <ClubCard key={club.id} clubName={club.name} clubImage={club.logoImage} />
                                     </li>
                                 )
                             })

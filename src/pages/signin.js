@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import { useState } from "react"
 import { useAuth } from "@/contexts/AuthContext"
 import Link from "next/link"
-import Button from "@/UI/Button"
+import { Button } from "@/UI"
 
 export default function Signin() {
 
@@ -24,7 +24,7 @@ export default function Signin() {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        if (user !== '' && pwd !== ''){
+        if (user !== '' && pwd !== '') {
             try {
                 setError('')
                 setLoading(true)
