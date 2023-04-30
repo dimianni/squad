@@ -25,7 +25,7 @@ export default function Home() {
   }
 
   return (
-    <main className="mt-16">
+    <main className="mt-24">
       <Head>
         <title>TheDreamTeam</title>
         <meta name="description" content="At TheDreamTeam you can see the most up to date squad of your favorite football team!" />

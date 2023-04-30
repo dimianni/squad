@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 import { useAuth } from "@/contexts/AuthContext"
-import { Button } from "@/UI"
+import { Button, Input } from "@/UI"
 
 export default function LoginForm() {
 
@@ -48,7 +48,7 @@ export default function LoginForm() {
 
         } else {
             if (user !== '' && pwd !== '' && confirmPwd !== '') {
-                if (pwd === confirmPwd){
+                if (pwd === confirmPwd) {
                     try {
                         setError('')
                         setLoading(true)
@@ -73,36 +73,44 @@ export default function LoginForm() {
         setConfirmPwd('')
         setError('')
     }, [formType])
-    
+
 
     return (
         <div className="wrapper w-96 mx-auto flex flex-col justify-center items-center">
             <h1 className="text-3xl font-semibold mb-6">{formType}</h1>
             <form onSubmit={handleSubmit} className="w-full flex flex-col justify-center items-center">
-                <input onChange={handleUserInput} value={user} placeholder="Your username" className="w-full bg-wite border mb-4 border-grey p-2 pl-4 rounded-xl text-base" type="text" />
-                <input onChange={handlePwdInput} value={pwd} placeholder="Your password" className="w-full bg-wite border mb-4 border-grey p-2 pl-4 rounded-xl text-base" type="text" />
-                
-                { formType === "Sign up" &&
-                    <input onChange={handleConfirmPwdInput} value={confirmPwd} placeholder="Confirm password" className="w-full bg-wite border mb-4 border-grey p-2 pl-4 rounded-xl text-base" type="text" />
+                <div className="username mb-4">
+                    <Input onChange={handleUserInput} value={user} placeholder="Your username" />
+                </div>
+                <div className="password mb-4">
+                    <Input onChange={handlePwdInput} value={pwd} placeholder="Your password" />
+                </div>
+
+                {formType === "Sign up" &&
+                    <div className="confirmPassword mb-4">
+                        <Input onChange={handleConfirmPwdInput} value={confirmPwd} placeholder="Confirm password" />
+                    </div>
                 }
-                <Button btnType="submit" btnText={formType} disabled={loading} />
+                <Button color="blue" disabled={loading}>
+                    <p>{formType}</p>
+                </Button>
             </form>
+
+            {error && <div>{error}</div>}
 
             {
                 formType === "Sign in" ? (
                     <div className="mt-4 text-sm flex">
                         <p className="mr-1">Need an account?</p>
-                        <button className="underline" onClick={() => setFormType("Sign up")}>Sign Up</button>
+                        <p className="underline" onClick={() => setFormType("Sign up")}>Sign Up</p>
                     </div>
                 ) : (
                     <div className="mt-4 text-sm flex">
                         <p className="mr-1">Already have an account?</p>
-                        <button className="underline" onClick={() => setFormType("Sign in")}>Sign in</button>
+                        <p className="underline" onClick={() => setFormType("Sign in")}>Sign in</p>
                     </div>
                 )
             }
-
-            {error && <div>{error}</div>}
         </div>
     )
 }

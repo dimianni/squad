@@ -60,7 +60,7 @@ export default function Search() {
     }
 
     return (
-        <main className="mt-16 min-h-screen">
+        <main className="mt-24 min-h-screen">
             <section>
                 <SearchField />
                 <div className="flex items-center mb-4 text-lg font-semibold">

@@ -1,7 +1,23 @@
-export default function Button({ btnType, btnText, onClick, disabled }) {
+import cls from "classnames"
+import { useMemo } from "react"
+
+export default function Button({ color, onClick, disabled, children }) {
+
+    const buttonClasses = useMemo(() => {
+        return {
+            "text-white bg-blue-500 hover:bg-blue-900": color === "blue" && !disabled,
+            "border border-grey text-blue-500 bg-white hover:drop-shadow": color === "white" && !disabled,
+            "border border-grey text-blue-500 bg-white cursor-not-allowed": disabled,
+        }
+    })
+
     return (
-        <button type={btnType} disabled={disabled} onClick={onClick} className="p-2 rounded-lg text-white bg-blue-500 sm:hover:bg-blue-900 transition-colors">
-            {btnText}
+        <button
+            disabled={disabled}
+            onClick={onClick}
+            className={cls("text-base font-medium mx-2 px-4 py-2 rounded-xl transition-colors", buttonClasses)}
+        >
+            {children}
         </button>
     )
 }

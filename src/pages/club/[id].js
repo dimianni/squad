@@ -43,7 +43,7 @@ export default function ClubDetails() {
     }
 
     return (
-        <main className="mt-16">
+        <main className="mt-24">
             <section className="flex flex-col justify-center items-center">
                 <Image src={clubData.club.image} alt={clubData.club.name} width="30" height="30" />
                 <h1>{clubData.club.name}</h1>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Button, Input } from "@/UI";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -9,17 +9,21 @@ export default function SearchField() {
     const [error, setError] = useState(false)
     const [touched, setTouched] = useState(false)
 
+
+    const handleSearch = (e) => setSearchTerm(e.target.value);
+
     const handleEnter = (e) => {
         if (e.key === 'Enter' && searchTerm !== ''){
-            router.push(`/search?term=${searchTerm}`);
+            router.push(`/search?term=${searchTerm}&page=1`);
         }
     }
 
-    const handleSearch = (e) => setSearchTerm(e.target.value);
     const handleClick = (e) => {
         if (searchTerm === ''){
             e.preventDefault();
             setError(true)
+        } else {
+            router.push(`/search?term=${searchTerm}&page=1`)
         }
     }
     const handleBlur = () => setTouched(true);
@@ -36,18 +40,17 @@ export default function SearchField() {
 
     return (
         <div className="my-6 flex justify-center items-center">
-            <input
-                className={`bg-wite border border-grey p-2 pl-4 rounded-xl text-base ${error ? "error" : ""}`}
-                type="text"
+            <Input
                 value={searchTerm}
                 placeholder="Search clubs"
                 onChange={handleSearch}
                 onKeyPress={handleEnter}
                 onBlur={handleBlur}
+                error={error}
             />
-            <button className="ml-2">
-                <Link onClick={handleClick} href={`/search?term=${searchTerm}&page=1`}>Search</Link>
-            </button>
+            <Button color="white" onClick={handleClick}>
+                Search
+            </Button>
         </div>
     )
 }

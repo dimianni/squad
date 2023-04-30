@@ -3,6 +3,7 @@ import Link from "next/link"
 import logo from '../../../public/images/thedreamteam_logo.svg'
 import { useAuth } from "@/contexts/AuthContext"
 import { useRouter } from "next/router";
+import { Button } from "@/UI";
 
 
 export default function Header() {
@@ -31,11 +32,11 @@ export default function Header() {
                 {
                     currentUser ? (
                         <div className="flex">
-                            <Link href={`/profile/${currentUser.uid}`}>Profile</Link>
-                            <button className="ml-4" onClick={handleLogout}>Sign Out</button>
+                            <Button color="white" onClick={() => router.push(`/profile/${currentUser.uid}`)}>Profile</Button>
+                            <Button color="blue" onClick={handleLogout}>Sign Out</Button>
                         </div>
                     ) : (
-                        <Link href="/login">Sign In</Link>
+                        <Button color="blue" onClick={() => router.push("/login")}>Sign In</Button>
                     )
                 }
             </div>
