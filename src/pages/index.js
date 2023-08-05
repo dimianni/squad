@@ -27,8 +27,8 @@ export default function Home() {
   return (
     <main className="mt-24">
       <Head>
-        <title>TheDreamTeam</title>
-        <meta name="description" content="At TheDreamTeam you can see the most up to date squad of your favorite football team!" />
+        <title>Squad</title>
+        <meta name="description" content="In the Squad app you can see the most up to date line-up of your favorite football team!" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

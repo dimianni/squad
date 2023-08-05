@@ -26,7 +26,7 @@ export default function Header() {
             <div className="container flex justify-between items-center">
                 <h1 className="text-white text-xl font-bold w-36">
                     <Link className="w-full" href="/">
-                        <Image src={logo} alt="TheDreamteam" style={{ width: "100%", height: "auto" }} />
+                        <Image src={logo} alt="Squad" style={{ width: "100%", height: "auto" }} />
                     </Link>
                 </h1>
                 {
