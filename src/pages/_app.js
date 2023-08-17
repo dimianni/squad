@@ -1,4 +1,4 @@
-import { Layout } from '@/components'
+import { Layout } from '../components'
 import '@/styles/globals.css'
 import { Router } from 'next/router';
 import { Poppins } from 'next/font/google'

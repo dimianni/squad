@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
-import SearchField from "@/components/SearchField/SearchField";
+import {SearchField, ClubCard} from "../components";
 import Pagination from "@/Utils/Pagination";
-import ClubCard from "@/components/ClubCard/ClubCard";
 import { useEffect, useState } from "react";
 import { Spinner } from "../UI";
 
