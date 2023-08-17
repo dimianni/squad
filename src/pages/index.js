@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { SearchField, ClubCard } from "@/components";
-import { Spinner } from "@/UI";
+import { Spinner } from "../UI";
 
 export default function Home() {
 

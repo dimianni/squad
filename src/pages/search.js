@@ -3,7 +3,7 @@ import SearchField from "@/components/SearchField/SearchField";
 import Pagination from "@/Utils/Pagination";
 import ClubCard from "@/components/ClubCard/ClubCard";
 import { useEffect, useState } from "react";
-import { Spinner } from "@/UI";
+import { Spinner } from "../UI";
 
 export default function Search() {
 

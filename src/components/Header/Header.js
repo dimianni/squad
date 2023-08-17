@@ -3,7 +3,7 @@ import Link from "next/link"
 import logo from '../../../public/images/squad_logo.svg'
 import { useAuth } from "@/contexts/AuthContext"
 import { useRouter } from "next/router";
-import { Button } from "@/UI";
+import { Button } from "../../UI";
 
 
 export default function Header() {

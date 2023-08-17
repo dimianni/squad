@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 import { useAuth } from "@/contexts/AuthContext"
-import { Button, Input } from "@/UI"
+import { Button, Input } from "../../UI"
 
 export default function LoginForm() {
 

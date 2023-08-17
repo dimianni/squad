@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { PlayerCard } from "@/components";
-import { Spinner } from "@/UI";
+import { Spinner } from "../../UI";
 
 
 export default function ClubDetails() {

@@ -1,13 +1,22 @@
 import cls from "classnames"
 import { useMemo } from "react"
 
-export default function Input({value, placeholder, onChange, onKeyPress, onBlur, error}){
+interface InputProps {
+    value: string
+    placeholder: string
+    onChange: () => void
+    onKeyPress: () => void
+    onBlur: () => void
+    error: string
+}
+
+export default function Input({value, placeholder, onChange, onKeyPress, onBlur, error} : InputProps){
 
     const inputClasses = useMemo(() => {
         return {
             "error": error
         }
-    })
+    }, [error])
 
     return (
         <input

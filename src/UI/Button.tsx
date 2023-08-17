@@ -1,7 +1,14 @@
 import cls from "classnames"
 import { useMemo } from "react"
 
-export default function Button({ color, onClick, disabled, children }) {
+interface ButtonProps {
+    color: string
+    onClick: () => void
+    disabled: boolean 
+    children: React.ReactNode
+}
+
+export default function Button({ color, onClick, disabled, children }: ButtonProps) {
 
     const buttonClasses = useMemo(() => {
         return {
@@ -9,7 +16,7 @@ export default function Button({ color, onClick, disabled, children }) {
             "border border-grey text-blue-500 bg-white hover:drop-shadow": color === "white" && !disabled,
             "border border-grey text-blue-500 bg-white cursor-not-allowed": disabled,
         }
-    })
+    }, [color, disabled])
 
     return (
         <button

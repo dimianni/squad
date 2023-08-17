@@ -1,4 +1,4 @@
-import { Button, Input } from "@/UI";
+import { Button, Input } from "../../UI";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
