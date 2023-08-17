@@ -1,6 +1,12 @@
 import Image from "next/image"
 
-export default function ClubCard({ clubName, clubImage, countryName }) {
+interface ClubCardProps {
+    clubName: string
+    clubImage: string
+    countryName: string
+}
+
+export default function ClubCard({ clubName, clubImage, countryName }: ClubCardProps) {
 
     return (
         <article className="flex flex-col items-center justify-center p-4 h-40 text-center">

@@ -4,9 +4,13 @@ import { useMemo } from "react"
 interface ButtonProps {
     color: string
     onClick: () => void
-    disabled: boolean 
+    disabled?: boolean 
     children: React.ReactNode
 }
+
+Button.defaultProps = {
+    disabled: false,
+};
 
 export default function Button({ color, onClick, disabled, children }: ButtonProps) {
 
