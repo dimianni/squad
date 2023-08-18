@@ -5,20 +5,20 @@ import { useEffect, useState } from "react";
 export default function SearchField() {
 
     const router = useRouter()
-    const [searchTerm, setSearchTerm] = useState('')
-    const [error, setError] = useState(false)
-    const [touched, setTouched] = useState(false)
+    const [searchTerm, setSearchTerm] = useState<string>('')
+    const [error, setError] = useState<boolean>(false)
+    const [touched, setTouched] = useState<boolean>(false)
 
 
-    const handleSearch = (e) => setSearchTerm(e.target.value);
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value);
 
-    const handleEnter = (e) => {
+    const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' && searchTerm !== ''){
             router.push(`/search?term=${searchTerm}&page=1`);
         }
     }
 
-    const handleClick = (e) => {
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (searchTerm === ''){
             e.preventDefault();
             setError(true)

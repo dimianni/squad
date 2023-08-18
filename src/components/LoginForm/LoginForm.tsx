@@ -3,30 +3,38 @@ import { useState, useEffect } from "react"
 import { useAuth } from "@/contexts/AuthContext"
 import { Button, Input } from "../../UI"
 
+type FormEventType = React.FormEvent<HTMLFormElement>;
+type ChangeEventType = React.ChangeEvent<HTMLInputElement>;
+
+enum FormType {
+    SignIn = "Sign in",
+    SignUp = "Sign up",
+}
+
 export default function LoginForm() {
 
     const router = useRouter()
     const { signin, signup } = useAuth()
-    const [formType, setFormType] = useState("Sign in")
+    const [formType, setFormType] = useState<FormType>(FormType.SignIn)
 
     // Form Fields
-    const [user, setUser] = useState('')
-    const [pwd, setPwd] = useState('')
-    const [confirmPwd, setConfirmPwd] = useState('')
+    const [user, setUser] = useState<string>('')
+    const [pwd, setPwd] = useState<string>('')
+    const [confirmPwd, setConfirmPwd] = useState<string>('')
 
     // Statuses
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState<string>('')
+    const [loading, setLoading] = useState<boolean>(false)
 
     // Handlers
-    const handleUserInput = (e) => setUser(e.target.value);
-    const handlePwdInput = (e) => setPwd(e.target.value);
-    const handleConfirmPwdInput = (e) => setConfirmPwd(e.target.value);
+    const handleUserInput = (e: ChangeEventType) => setUser(e.target.value);
+    const handlePwdInput = (e: ChangeEventType) => setPwd(e.target.value);
+    const handleConfirmPwdInput = (e: ChangeEventType) => setConfirmPwd(e.target.value);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEventType): Promise<void> => {
         e.preventDefault()
 
-        if (formType === "Sign in") {
+        if (formType === FormType.SignIn) {
 
             if (user !== '' && pwd !== '') {
                 try {
@@ -99,15 +107,15 @@ export default function LoginForm() {
             {error && <div>{error}</div>}
 
             {
-                formType === "Sign in" ? (
+                formType === FormType.SignIn ? (
                     <div className="mt-4 text-sm flex">
                         <p className="mr-1">Need an account?</p>
-                        <p className="underline" onClick={() => setFormType("Sign up")}>Sign Up</p>
+                        <p className="underline" onClick={() => setFormType(FormType.SignUp)}>Sign Up</p>
                     </div>
                 ) : (
                     <div className="mt-4 text-sm flex">
                         <p className="mr-1">Already have an account?</p>
-                        <p className="underline" onClick={() => setFormType("Sign in")}>Sign in</p>
+                            <p className="underline" onClick={() => setFormType(FormType.SignIn)}>Sign in</p>
                     </div>
                 )
             }

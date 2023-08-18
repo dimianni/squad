@@ -3,11 +3,11 @@ import { useMemo } from "react"
 
 interface InputProps {
     value: string
-    placeholder: string
-    onChange: () => void
-    onKeyPress: () => void
-    onBlur: () => void
-    error: string
+    placeholder?: string
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+    onBlur?: () => void
+    error?: boolean
 }
 
 export default function Input({value, placeholder, onChange, onKeyPress, onBlur, error} : InputProps){

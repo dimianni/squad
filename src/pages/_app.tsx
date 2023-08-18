@@ -1,4 +1,5 @@
 import { Layout } from '../components'
+import { AppProps } from 'next/app';
 import '@/styles/globals.css'
 import { Router } from 'next/router';
 import { Poppins } from 'next/font/google'
@@ -11,8 +12,12 @@ const poppins = Poppins({
   subsets: ['latin']
 })
 
+interface CustomAppProps extends AppProps {
+  Component: React.ComponentType<any>;
+  pageProps: any;
+}
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: CustomAppProps) {
 
   NProgress.configure({ showSpinner: false });
 

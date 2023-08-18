@@ -3,10 +3,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { SearchField, ClubCard } from "../components";
 import { Spinner } from "../UI";
+import { ITeam } from "@/models/team";
 
 export default function Home() {
 
-  const [topClubs, setTopClubs] = useState(null)
+  const [topClubs, setTopClubs] = useState<ITeam[]>([])
 
   const getTopClubs = async () => {
     let response = await fetch('/api/gettopclubs')

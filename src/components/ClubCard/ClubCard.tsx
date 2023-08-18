@@ -3,7 +3,7 @@ import Image from "next/image"
 interface ClubCardProps {
     clubName: string
     clubImage: string
-    countryName: string
+    countryName?: string
 }
 
 export default function ClubCard({ clubName, clubImage, countryName }: ClubCardProps) {

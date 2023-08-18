@@ -1,6 +1,13 @@
 import Image from "next/image";
 
-export default function PlayerCard({ image, name, shirtNumber, captain }) {
+interface PlayerCardProps {
+    image: string
+    name: string
+    shirtNumber: number
+    captain: boolean
+}
+
+export default function PlayerCard({ image, name, shirtNumber, captain }: PlayerCardProps) {
     return (
         <article className="flex flex-col items-center justify-start p-4 h-40 text-center">
             <div className="w-20 h-20 flex justify-center items-center">

@@ -3,7 +3,7 @@ import { useMemo } from "react"
 
 interface ButtonProps {
     color: string
-    onClick: () => void
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
     disabled?: boolean 
     children: React.ReactNode
 }
