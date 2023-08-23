@@ -1,6 +1,7 @@
 import axios from "axios";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function getsearchedclubs(req, res) {
+export default async function getsearchedclubs(req: NextApiRequest, res: NextApiResponse) {
 
     let term = req.body.term
     let page = req.body.page
@@ -19,6 +20,8 @@ export default async function getsearchedclubs(req, res) {
         const { data } = await axios.request(options)
         return res.status(200).json({ teams: data })
     } catch (error) {
-        return res.status(500).json({errorMessage: error.message})
+        // Type Assertion. Asserting that the variable error should be treated as an object of type Error.
+        const errorMessage = (error as Error).message
+        return res.status(500).json({ errorMessage })
     }
 }

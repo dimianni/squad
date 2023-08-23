@@ -3,7 +3,7 @@ import Image from "next/image";
 interface PlayerCardProps {
     image: string
     name: string
-    shirtNumber: number
+    shirtNumber: number | null
     captain: boolean
 }
 

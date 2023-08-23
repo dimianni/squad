@@ -1,8 +1,9 @@
 import axios from "axios";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function getclubdetails(req, res) {
+export default async function getclubdetails(req: NextApiRequest, res: NextApiResponse) {
 
-    let id = req.body.id
+    let id: string = req.body.id;
 
     const clubOptions = {
         method: 'GET',
@@ -31,8 +32,9 @@ export default async function getclubdetails(req, res) {
         const squadResponse = await axios.request(squadOptions)
         const squadData = await squadResponse.data
 
-        return res.status(200).json({ clubData, squadData  })
+        return res.status(200).json({ clubData, squadData })
     } catch (error) {
-        return res.status(500).json({errorMessage: error.message})
+        const errorMessage = (error as Error).message
+        return res.status(500).json({ errorMessage })
     }
 }
